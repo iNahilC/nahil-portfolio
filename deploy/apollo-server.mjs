@@ -18,7 +18,9 @@ const server = createServer(async (request, response) => {
   let path;
   try {
     const pathname = decodeURIComponent(new URL(request.url || '/', 'http://localhost').pathname);
-    const relative = pathname === '/' ? 'index.html' : pathname.replace(/^\/+/, '');
+    const relative = pathname === '/'
+      ? 'index.html'
+      : pathname.replace(/^\/+/, '') + (pathname.endsWith('/') ? 'index.html' : '');
     path = resolve(root, relative);
     if (relative.includes('\0') || isAbsolute(relative) || (!path.startsWith(root + sep) && path !== root)) {
       response.writeHead(403).end('Forbidden');

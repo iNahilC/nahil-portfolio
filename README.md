@@ -1,22 +1,29 @@
 # Portafolio de Nahil Rojas
 
-Sitio personal de una página construido con Astro. El código de CBRM y Ferrefacturas permanece en sus repositorios privados; este proyecto contiene únicamente contenido público del portafolio.
+Código del portafolio personal de [Nahil Enmanuel Rojas Morel](https://nahilrojas.sparked.network/), desarrollador de software en Santo Domingo, República Dominicana.
 
-## Desarrollo
+El sitio presenta mi trabajo en **CBRM** y **Ferrefacturas**. Incluye un [caso de estudio de CBRM](https://nahilrojas.sparked.network/proyectos/cbrm/) que explica mi responsabilidad técnica. Los repositorios de esos productos son privados y no forman parte de este proyecto.
 
-```sh
+## Tecnologías
+
+- Astro, HTML y CSS
+- Node.js para servir la versión estática en Apollo
+
+## Ejecutar localmente
+
+```bash
 npm install
 npm run dev
 ```
 
-## Compilación
+## Generar el sitio
 
-```sh
+```bash
 npm run build
 ```
 
-El contenido está en `src/pages/index.astro` y los estilos en `src/styles/global.css`. La carpeta `dist/` contiene el sitio estático para servirlo desde un servidor web. El dominio configurado en `astro.config.mjs` debe apuntar al servidor o servicio que publique `dist/`.
+Astro genera `dist/`. El código de las páginas está en `src/pages/`; los estilos, en `src/styles/global.css`. `public/` contiene los recursos públicos que necesita el sitio, incluida la versión descargable de mi CV.
 
-## Apollo
+## Publicación
 
-El archivo `deploy/apollo-server.mjs` puede servir `dist/` en el puerto adicional 25724. Está separado de la aplicación Ferrefacturas y no necesita sus variables de entorno. En Apollo, se despliega bajo `/home/container/portfolio/` con `dist/` y `deploy/`. El proceso principal de Ferrefacturas importa ese servidor estático desde su `index.js` sin alterar las rutas de la aplicación existente.
+`deploy/apollo-server.mjs` sirve los archivos generados por Astro en el puerto configurado mediante `PORTFOLIO_PORT`. Los datos de acceso y la configuración privada del servidor no están incluidos.
