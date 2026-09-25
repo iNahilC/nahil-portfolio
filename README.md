@@ -16,3 +16,7 @@ npm run build
 ```
 
 El contenido está en `src/pages/index.astro` y los estilos en `src/styles/global.css`. La carpeta `dist/` contiene el sitio estático para servirlo desde un servidor web. El dominio configurado en `astro.config.mjs` debe apuntar al servidor o servicio que publique `dist/`.
+
+## Apollo
+
+El archivo `deploy/apollo-server.mjs` puede servir `dist/` en el puerto adicional 25724. Está separado de la aplicación Ferrefacturas y no necesita sus variables de entorno. En Apollo, se despliega bajo `/home/container/portfolio/` con `dist/` y `deploy/`. El proceso principal de Ferrefacturas importa ese servidor estático desde su `index.js` sin alterar las rutas de la aplicación existente.
