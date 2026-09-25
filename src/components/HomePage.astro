@@ -1,0 +1,74 @@
+---
+import '../styles/global.css';
+import ArrowIcon from './ArrowIcon.astro';
+import SiteHead from './SiteHead.astro';
+import SiteHeader from './SiteHeader.astro';
+import { common, home, paths, type Locale } from '../i18n/content';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = home[locale];
+const shared = common[locale];
+const cvPath = '/Nahil_Enmanuel_Rojas_Morel_CV.pdf';
+---
+<!doctype html>
+<html lang={locale}>
+  <head><SiteHead locale={locale} page="home" title={t.title} description={t.description} /></head>
+  <body>
+    <a class="skip-link" href="#contenido">{shared.skip}</a>
+    <SiteHeader locale={locale} page="home" />
+    <main id="contenido">
+      <section class="hero shell" id="inicio" aria-labelledby="hero-title">
+        <div class="hero-rail" aria-hidden="true"><span>{t.heroIndex}</span><span>2026</span></div>
+        <div class="hero-main">
+          <p class="eyebrow"><span class="status-mark" aria-hidden="true"></span>{t.role}</p>
+          <h1 id="hero-title">{t.heroBefore}<em>{t.heroEmphasis}</em>{t.heroAfter}<span class="period">.</span></h1>
+          <div class="hero-bottom">
+            <p>{t.intro}</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#proyectos">{t.viewProjects}<ArrowIcon direction="down-right" /></a>
+              <a class="text-link" href={cvPath} download>{shared.downloadCv}<ArrowIcon /></a>
+            </div>
+          </div>
+        </div>
+        <div class="hero-corner" aria-hidden="true"><span>WEB</span><span>BOTS</span><span>{locale === 'es' ? 'DATOS' : 'DATA'}</span></div>
+      </section>
+
+      <section class="selected-work" id="proyectos" aria-labelledby="work-title"><div class="shell">
+        <div class="section-heading"><div><p class="section-index">{t.workIndex}</p><h2 id="work-title">{t.workTitle}<span class="period">.</span></h2></div><p>{t.workAsideFirst}<br />{t.workAsideSecond}</p></div>
+        <article class="project project-cbrm" aria-labelledby="cbrm-title">
+          <div class="project-image">
+            <img src="/cbrm-case.webp" alt={shared.cbrmImageAlt} loading="lazy" width="1920" height="1080" />
+            <div class="image-topline"><span>{t.caseOne}</span><span>{t.cbrmKinds}</span></div>
+            <div class="image-bottomline"><span>CB:RM</span><a href="https://www.playcbrm.xyz/" target="_blank" rel="noopener noreferrer" aria-label={t.cbrmOpenAria}>{t.viewPlatform}<ArrowIcon /></a></div>
+          </div>
+          <div class="project-copy">
+            <div class="project-intro"><p class="project-kicker">{t.cbrmKicker}</p><h3 id="cbrm-title">CBRM</h3><p>{t.cbrmDescription}</p></div>
+            <div class="metric-row" aria-label={t.cbrmMetricsAria}>
+              <div><strong>{t.cbrmPlayersCount}</strong><span>{t.cbrmPlayers}</span></div>
+              <div><strong>{t.cbrmDiscordCount}</strong><span>{t.cbrmDiscord}</span></div>
+              <div><strong>60+</strong><span>{t.cbrmMatches}</span></div>
+            </div>
+            <div class="scope"><p class="small-label">{t.cbrmScope}</p><ul>{t.cbrmContributions.map((item) => <li><ArrowIcon />{item}</li>)}</ul></div>
+            <div class="project-footer"><p>JavaScript / TypeScript · Node.js · Express · Prisma · MySQL · Astro · Discord API · Roblox OAuth</p><div class="project-links"><a class="project-link" href={paths[locale].caseStudy}>{t.readCase}<ArrowIcon /></a><a class="project-link" href="https://www.playcbrm.xyz/" target="_blank" rel="noopener noreferrer">{t.exploreWeb}<ArrowIcon /></a></div></div>
+          </div>
+        </article>
+        <article class="project project-ferre" aria-labelledby="ferre-title">
+          <div class="ferre-copy"><p class="project-kicker">{t.ferreKicker}</p><h3 id="ferre-title">Ferrefacturas<span class="period">.</span></h3><p class="ferre-lead">{t.ferreLead}</p><p>{t.ferreDescription}</p><div class="ferre-tags"><span>Astro</span><span>TypeScript</span><span>Supabase</span><span>Gemini</span></div><p class="private-note">{t.ferrePrivate}</p></div>
+          <div class="ferre-visual" aria-label={t.ferreFlowAria}>
+            <div class="visual-caption"><span>{t.ferreFlowTitle}</span><span>01 — 04</span></div>
+            <div class="process-line">{t.ferreSteps.map((step, index) => <div><span>{String(index + 1).padStart(2, '0')}</span><strong>{step[0]}</strong><small>{step[1]}</small></div>)}</div>
+            <div class="visual-footer"><span>{t.ferreInput}</span><ArrowIcon direction="right" /><span>{t.ferreOutput}</span></div>
+          </div>
+        </article>
+      </div></section>
+
+      <section class="profile shell" id="perfil" aria-labelledby="profile-title">
+        <div class="profile-heading"><p class="section-index">{t.profileIndex}</p><h2 id="profile-title">{t.profileTitle}<span class="period">.</span></h2></div>
+        <div class="profile-content"><p class="profile-statement">{t.profileStatement}</p><div class="profile-details"><p>{t.profileDetails}</p><div class="skill-lines">{t.skills.map((skill, index) => <div><span>{String(index + 1).padStart(2, '0')}</span><strong>{skill[0]}</strong><small>{skill[1]}</small></div>)}</div></div></div>
+      </section>
+
+      <section class="contact" id="contacto" aria-labelledby="contact-title"><div class="shell contact-inner"><p class="section-index">{t.contactIndex}</p><div class="contact-row"><h2 id="contact-title">{t.contactTitle}<span class="period">.</span></h2><div class="contact-actions"><a class="button button-light" href="mailto:NahilEnmanuel58@gmail.com">{t.writeMe}<ArrowIcon /></a><a href="https://github.com/iNahilC" target="_blank" rel="noopener noreferrer">GitHub<ArrowIcon /></a><a href={cvPath} download>{shared.downloadCv}<ArrowIcon /></a></div></div><div class="contact-bottom"><span>NAHIL ENMANUEL ROJAS MOREL</span><span>{shared.location}</span><a href="#inicio">{shared.backToTop}<ArrowIcon direction="up" /></a></div></div></section>
+    </main>
+  </body>
+</html>

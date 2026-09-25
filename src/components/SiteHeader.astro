@@ -1,0 +1,27 @@
+---
+import ArrowIcon from './ArrowIcon.astro';
+import { common, paths, type Locale } from '../i18n/content';
+
+interface Props { locale: Locale; page: 'home' | 'caseStudy' }
+const { locale, page } = Astro.props;
+const t = common[locale];
+const home = paths[locale].home;
+---
+<header class="site-header">
+  <div class="header-inner shell">
+    <a class="wordmark" href={home} aria-label={t.homeAria}><span class="wordmark-symbol">N<span>.</span></span><span>NAHIL ROJAS</span></a>
+    <nav class="main-nav" aria-label={t.navAria}>
+      <a href={`${home}#proyectos`}>{t.projects}</a>
+      <a href={`${home}#perfil`}>{t.profile}</a>
+      <a href={`${home}#contacto`}>{t.contact}</a>
+    </nav>
+    <div class="header-controls">
+      <nav class="language-switch" aria-label={t.languageAria}>
+        <a href={paths.es[page]} lang="es" aria-current={locale === 'es' ? 'page' : undefined}>ES</a>
+        <span aria-hidden="true">/</span>
+        <a href={paths.en[page]} lang="en" aria-current={locale === 'en' ? 'page' : undefined}>EN</a>
+      </nav>
+      <a class="header-cv" href="/Nahil_Enmanuel_Rojas_Morel_CV.pdf" download><span class="cv-long">{t.downloadCv}</span><span class="cv-short">CV</span><ArrowIcon /></a>
+    </div>
+  </div>
+</header>

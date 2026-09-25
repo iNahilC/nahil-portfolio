@@ -1,0 +1,44 @@
+---
+import '../styles/global.css';
+import ArrowIcon from './ArrowIcon.astro';
+import SiteHead from './SiteHead.astro';
+import SiteHeader from './SiteHeader.astro';
+import { caseStudy, common, paths, type Locale } from '../i18n/content';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = caseStudy[locale];
+const shared = common[locale];
+const home = paths[locale].home;
+---
+<!doctype html>
+<html lang={locale}>
+  <head><SiteHead locale={locale} page="caseStudy" title={t.title} description={t.description} /></head>
+  <body>
+    <a class="skip-link" href="#contenido">{shared.skip}</a>
+    <SiteHeader locale={locale} page="caseStudy" />
+    <main id="contenido"><article>
+      <div class="case-intro shell">
+        <a class="case-back" href={`${home}#proyectos`}><ArrowIcon direction="left" />{t.backProjects}</a>
+        <p class="section-index">{t.kicker}</p>
+        <div class="case-title-row"><h1>CBRM<span class="period">.</span></h1><p>{t.subtitle}</p></div>
+        <p class="case-lead">{t.lead}</p>
+        <div class="case-context">{t.context.map((item) => <span>{item}</span>)}</div>
+      </div>
+      <div class="case-cover shell"><img src="/cbrm-case.webp" alt={shared.cbrmImageAlt} width="1920" height="1080" /><span>{t.coverCaption}</span></div>
+      <section class="case-summary shell" aria-labelledby="summary-title">
+        <div><p class="section-index">{t.projectIndex}</p><h2 id="summary-title">{t.projectTitle}<span class="period">.</span></h2></div>
+        <div class="case-summary-copy">{t.projectParagraphs.map((paragraph) => <p>{paragraph}</p>)}</div>
+      </section>
+      <section class="case-metrics" aria-label={t.metricsAria}><div class="shell case-metric-grid">{t.metrics.map((metric) => <div><strong>{metric[0]}</strong><span>{metric[1]}</span></div>)}</div></section>
+      <section class="case-work shell" aria-labelledby="work-title">
+        <div class="case-section-heading"><p class="section-index">{t.workIndex}</p><h2 id="work-title">{t.workTitle}<span class="period">.</span></h2><p>{t.workIntro}</p></div>
+        <div class="case-work-grid">{t.work.map((item) => <div><span>{item[0]}</span><h3>{item[1]}</h3><p>{item[2]}</p></div>)}</div>
+      </section>
+      <section class="case-flow" aria-labelledby="flow-title"><div class="shell"><p class="section-index">{t.flowIndex}</p><h2 id="flow-title">{t.flowTitle}<span class="period">.</span></h2><div class="case-flow-steps">{t.flowSteps.map((step, index) => <div><span>{String(index + 1).padStart(2, '0')}</span><strong>{step[0]}</strong><small>{step[1]}</small></div>)}</div></div></section>
+      <section class="case-stack shell" aria-labelledby="stack-title"><div><p class="section-index">{t.stackIndex}</p><h2 id="stack-title">{t.stackTitle}<span class="period">.</span></h2></div><p>JavaScript / TypeScript · Node.js · Express · Astro · Prisma · MySQL / SQL · Discord API · Roblox OAuth · Git / GitHub</p></section>
+      <section class="case-end"><div class="shell case-end-inner"><div><p class="section-index">{t.endIndex}</p><h2>{t.endTitle}<span class="period">.</span></h2><p>{t.endDescription}</p></div><a class="button button-light" href="https://www.playcbrm.xyz/" target="_blank" rel="noopener noreferrer">{t.visitCbrm}<ArrowIcon /></a></div></section>
+    </article></main>
+    <footer class="case-footer shell"><span>NAHIL ENMANUEL ROJAS MOREL</span><a href={home}><ArrowIcon direction="left" />{t.backPortfolio}</a></footer>
+  </body>
+</html>
