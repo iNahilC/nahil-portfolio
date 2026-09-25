@@ -3,7 +3,7 @@ import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { extname, isAbsolute, resolve, sep } from 'node:path';
 
-const root = fileURLToPath(new URL('../dist/', import.meta.url));
+const root = resolve(fileURLToPath(new URL('../dist/', import.meta.url)));
 const port = Number(process.env.PORTFOLIO_PORT || 25724);
 const mime = new Map([
   ['.html', 'text/html; charset=utf-8'],
