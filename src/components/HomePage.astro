@@ -9,7 +9,6 @@ interface Props { locale: Locale }
 const { locale } = Astro.props;
 const t = home[locale];
 const shared = common[locale];
-const cvPath = '/Nahil_Enmanuel_Rojas_Morel_CV.pdf';
 ---
 <!doctype html>
 <html lang={locale}>
@@ -27,7 +26,7 @@ const cvPath = '/Nahil_Enmanuel_Rojas_Morel_CV.pdf';
             <p>{t.intro}</p>
             <div class="hero-actions">
               <a class="button button-primary" href="#proyectos">{t.viewProjects}<ArrowIcon direction="down-right" /></a>
-              <a class="text-link" href={cvPath} download>{shared.downloadCv}<ArrowIcon /></a>
+              <a class="text-link" href="mailto:NahilEnmanuel58@gmail.com">{t.writeMe}<ArrowIcon /></a>
             </div>
           </div>
         </div>
@@ -68,7 +67,7 @@ const cvPath = '/Nahil_Enmanuel_Rojas_Morel_CV.pdf';
         <div class="profile-content"><p class="profile-statement">{t.profileStatement}</p><div class="profile-details"><p>{t.profileDetails}</p><div class="skill-lines">{t.skills.map((skill, index) => <div><span>{String(index + 1).padStart(2, '0')}</span><strong>{skill[0]}</strong><small>{skill[1]}</small></div>)}</div></div></div>
       </section>
 
-      <section class="contact" id="contacto" aria-labelledby="contact-title"><div class="shell contact-inner"><p class="section-index">{t.contactIndex}</p><div class="contact-row"><h2 id="contact-title">{t.contactTitle}<span class="period">.</span></h2><div class="contact-actions"><a class="button button-light" href="mailto:NahilEnmanuel58@gmail.com">{t.writeMe}<ArrowIcon /></a><a href="https://github.com/iNahilC" target="_blank" rel="noopener noreferrer">GitHub<ArrowIcon /></a><a href={cvPath} download>{shared.downloadCv}<ArrowIcon /></a></div></div><div class="contact-bottom"><span>NAHIL ENMANUEL ROJAS MOREL</span><span>{shared.location}</span><a href="#inicio">{shared.backToTop}<ArrowIcon direction="up" /></a></div></div></section>
+      <section class="contact" id="contacto" aria-labelledby="contact-title"><div class="shell contact-inner"><p class="section-index">{t.contactIndex}</p><div class="contact-row"><h2 id="contact-title">{t.contactTitle}<span class="period">.</span></h2><div class="contact-actions"><a class="button button-light" href="mailto:NahilEnmanuel58@gmail.com">{t.writeMe}<ArrowIcon /></a></div></div><div class="contact-bottom"><span>NAHIL ENMANUEL ROJAS MOREL</span><span>{shared.location}</span><a href="#inicio">{shared.backToTop}<ArrowIcon direction="up" /></a></div></div></section>
     </main>
   </body>
 </html>

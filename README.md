@@ -22,7 +22,7 @@ npm run dev
 npm run build
 ```
 
-Astro genera `dist/`. El código de las páginas está en `src/pages/`; los estilos, en `src/styles/global.css`. `public/` contiene los recursos públicos que necesita el sitio, incluida la versión descargable de mi CV.
+Astro genera `dist/`. El código de las páginas está en `src/pages/`; los estilos, en `src/styles/global.css`. `public/` contiene únicamente los recursos públicos del sitio.
 
 ## Publicación
 
